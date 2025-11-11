@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainMenu extends JFrame {
 
@@ -40,33 +42,44 @@ public class MainMenu extends JFrame {
 		setBackground(Color.WHITE);
 		setTitle("Main Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 500);
+		setBounds(100, 100, 500, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.NORTH);
+		JPanel titlePanel = new JPanel();
+		contentPane.add(titlePanel, BorderLayout.NORTH);
 		
 		JLabel GameName = new JLabel("Tron");
 		GameName.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		panel.add(GameName);
+		titlePanel.add(GameName);
 		
-		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.SOUTH);
+		JPanel btnPanel = new JPanel();
+		contentPane.add(btnPanel, BorderLayout.SOUTH);
 		
 		JPanel playLbl = new JPanel();
-		panel_1.add(playLbl);
+		btnPanel.add(playLbl);
 		
 		JButton playBtn = new JButton("Play");
+		playBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose(); // close main menu
+			    new DifficultySelectionMenu().setVisible(true);
+			}
+		});
 		playBtn.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		playLbl.add(playBtn);
 		
 		JPanel quitLbl = new JPanel();
-		panel_1.add(quitLbl);
+		btnPanel.add(quitLbl);
 		
 		JButton btnNewButton = new JButton("Quit");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		quitLbl.add(btnNewButton);
 
